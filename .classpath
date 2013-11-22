@@ -7,38 +7,5 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER"/>
 	<classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/student/.m2/repository/org/jboss/teiid/teiid-metadata/8.6.0.Alpha3-SNAPSHOT/teiid-metadata-8.6.0.Alpha3-SNAPSHOT-tests.jar">
-		<attributes>
-			<attribute name="maven.groupId" value="org.jboss.teiid"/>
-			<attribute name="maven.artifactId" value="teiid-metadata"/>
-			<attribute name="maven.version" value="8.6.0.Alpha3-SNAPSHOT"/>
-			<attribute name="maven.classifier" value="tests"/>
-			<attribute name="maven.scope" value="test"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/home/student/.m2/repository/org/jboss/teiid/teiid-engine/8.6.0.Alpha3-SNAPSHOT/teiid-engine-8.6.0.Alpha3-SNAPSHOT-tests.jar">
-		<attributes>
-			<attribute name="maven.groupId" value="org.jboss.teiid"/>
-			<attribute name="maven.artifactId" value="teiid-engine"/>
-			<attribute name="maven.version" value="8.6.0.Alpha3-SNAPSHOT"/>
-			<attribute name="maven.classifier" value="tests"/>
-			<attribute name="maven.scope" value="test"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/home/student/.m2/repository/org/jboss/teiid/teiid-common-core/8.6.0.Alpha3-SNAPSHOT/teiid-common-core-8.6.0.Alpha3-SNAPSHOT-tests.jar">
-		<attributes>
-			<attribute name="maven.groupId" value="org.jboss.teiid"/>
-			<attribute name="maven.artifactId" value="teiid-common-core"/>
-			<attribute name="maven.version" value="8.6.0.Alpha3-SNAPSHOT"/>
-			<attribute name="maven.classifier" value="tests"/>
-			<attribute name="maven.scope" value="test"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/teiid-admin"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/teiid-api"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/teiid-client"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/teiid-common-core"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/teiid-engine"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/teiid-metadata"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
