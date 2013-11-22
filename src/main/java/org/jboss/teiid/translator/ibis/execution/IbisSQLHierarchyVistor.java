@@ -1,39 +1,25 @@
 package org.jboss.teiid.translator.ibis.execution;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import net.sf.saxon.expr.Token;
-
-import org.apache.commons.httpclient.URIException;
-import org.apache.commons.httpclient.util.URIUtil;
-import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.text.StrSubstitutor;
-import org.apache.http.client.utils.URIUtils;
-import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.solr.client.solrj.SolrQuery;
 import org.teiid.language.AndOr;
 import org.teiid.language.Comparison;
 import org.teiid.language.DerivedColumn;
 import org.teiid.language.Expression;
 import org.teiid.language.In;
-import org.teiid.language.LanguageObject;
 import org.teiid.language.Like;
 import org.teiid.language.Limit;
 import org.teiid.language.NamedTable;
-import org.teiid.language.Not;
 import org.teiid.language.OrderBy;
 import org.teiid.language.SQLConstants;
 import org.teiid.language.SQLConstants.Reserved;
 import org.teiid.language.Select;
 import org.teiid.language.SortSpecification;
-import org.teiid.language.SortSpecification.Ordering;
-import org.teiid.language.With;
 import org.teiid.language.SQLConstants.Tokens;
 import org.teiid.language.visitor.HierarchyVisitor;
 import org.teiid.logging.LogManager;
@@ -52,7 +38,6 @@ public class IbisSQLHierarchyVistor extends HierarchyVisitor {
 
 	private RuntimeMetadata metadata;
 	protected static final String UNDEFINED = "<undefined>"; 
-	private SolrQuery params = new SolrQuery();
 	private LogManager logger;
 	protected StringBuilder buffer = new StringBuilder();
 	private SQLConstants token;
