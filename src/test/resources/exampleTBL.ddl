@@ -1,4 +1,4 @@
-CREATE TABLE example (
+CREATE foreign TABLE example (
   price float,
   weight float,
   popularity integer, 

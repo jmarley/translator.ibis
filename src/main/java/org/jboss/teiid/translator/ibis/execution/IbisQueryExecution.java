@@ -87,7 +87,7 @@ public class IbisQueryExecution implements ResultSetExecution {
 		// TODO set offset
 		// TODO set row result limit
 		//
-
+		System.out.println(queryParams.toString());
 		// execute ibis query
 		try {
 			queryResponse = connection.executeQuery(queryParams);

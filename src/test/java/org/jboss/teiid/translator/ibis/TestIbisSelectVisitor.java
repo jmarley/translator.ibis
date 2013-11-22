@@ -1,5 +1,7 @@
 package org.jboss.teiid.translator.ibis;
 
-public class TestIbisSelectVisitor {
+import org.teiid.cdk.api.TranslationUtility;
 
+public class TestIbisSelectVisitor {
+	
 }
