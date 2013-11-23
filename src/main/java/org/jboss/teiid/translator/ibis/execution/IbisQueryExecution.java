@@ -1,5 +1,6 @@
 package org.jboss.teiid.translator.ibis.execution;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import org.jboss.teiid.translator.ibis.IbisExecutionFactory;
 /**
  * @author Jason Marley, Red Hat, Inc.
  * @author Syed Iqbal, Red Hat, Inc.
- *
+ * 
  */
 public class IbisQueryExecution implements ResultSetExecution {
 
@@ -60,25 +61,9 @@ public class IbisQueryExecution implements ResultSetExecution {
 	@Override
 	public void execute() throws TranslatorException {
 		this.visitor = new IbisSQLHierarchyVistor(metadata);
-		// visitor.translateSQL(query);
-		// build query in solr instance
-		// setQuery
-		// set query order
-		// sort clause
-		// setFields
 
 		// translate sql query into ibis query string
 		this.visitor.visitNode(query);
-
-		// get query fields
-		// fieldList = this.visitor.getFieldNameList();
-
-		/*
-		 * TODO to optimize query, look into returning specifying exactly which
-		 * columns to return. // add query Solr response fields for
-		 * (DerivedColumn field : fieldList) {
-		 * params.addField(visitor.getShortName((field.toString()))); }
-		 */
 
 		// get ibis query string
 		queryParams = this.visitor.getTranslatedSQL();
@@ -86,33 +71,23 @@ public class IbisQueryExecution implements ResultSetExecution {
 		LogManager.logInfo("This is the ibis query", queryParams);
 		// TODO set offset
 		// TODO set row result limit
-		//
-		System.out.println(queryParams.toString());
+
 		// execute ibis query
 		try {
 			queryResponse = connection.executeQuery(queryParams);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			LogManager.logCritical("query execution issue", queryParams.toString());
+			LogManager.logCritical("query execution issue",
+					queryParams.toString());
 			e.printStackTrace();
 		}
 
-		docItr = queryResponse.iterator(); // change to iterator?
-														// how does iterator
-														// work?
+		this.docItr = queryResponse.iterator();
 
-		// docNum = (int) docs.getNumFound();
-
-		/*
-		 * TODO write logic to handle limiting the number of docs found
-		 * logger.logDetail("Total docs returned: " + numFound); if(initialLimit
-		 * != -1 && initialLimit < numFound) { numToRetrieve = initialLimit; }
-		 * else { numToRetrieve = numFound; }
-		 */
 	}
 
 	/*
-	 * This iterates through the documents from Solr and maps their fields to
+	 * This iterates through the documents from CouchDB and maps their fields to
 	 * rows in the Teiid table
 	 * 
 	 * @see org.teiid.translator.ResultSetExecution#next()
@@ -120,24 +95,25 @@ public class IbisQueryExecution implements ResultSetExecution {
 	@Override
 	public List<?> next() throws TranslatorException, DataNotAvailableException {
 
-//		final List<Object> row = new ArrayList<Object>();
-//		String columnName;
+		final List<Object> row = new ArrayList<Object>();
+		String columnName;
+		String columnValue;
 
-		// is there any solr docs
+		// is there any couchdb docs
 		if (this.docItr != null && this.docItr.hasNext()) {
-			
-			LogManager.logInfo("this is json document in string format", this.docItr.toString());
-//			SolrDocument doc = this.docItr.next();
-//
-//			for (int i = 0; i < this.visitor.fieldNameList.size(); i++) {
-//				// TODO handle multiple tables
-//				columnName = this.visitor.getShortFieldName(i);
-//
-//				row.add(this.executionFactory.convertToTeiid(
-//						doc.getFieldValue(columnName), this.expectedTypes[i]));
-//			}
+			columnValue=this.docItr.next();
+			LogManager.logInfo("this is json document in string format", " "
+					+ columnValue);
 
-			return null;
+			for (int i = 0; i < this.visitor.fieldNameList.size(); i++) {
+				// TODO handle multiple tables
+				columnName = this.visitor.getShortFieldName(i);
+			
+				LogManager.logInfo("this is json document in string format", " "
+						+ columnValue);
+				row.add(columnValue);}
+
+			return row;
 		}
 		return null;
 	}
