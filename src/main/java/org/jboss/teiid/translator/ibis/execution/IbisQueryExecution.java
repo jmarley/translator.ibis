@@ -66,11 +66,11 @@ public class IbisQueryExecution implements ResultSetExecution {
 		this.visitor.visitNode(query);
 
 		// get ibis query string
-		queryParams = this.visitor.getTranslatedSQL();
-
+		queryParams = this.visitor.getResolvedPath();
+		
 		LogManager.logInfo("This is the ibis query", queryParams);
 		// TODO set offset
-		// TODO set row result limit
+		// TODO set row result limit 
 
 		// execute ibis query
 		try {
