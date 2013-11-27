@@ -29,21 +29,8 @@ public class IbisExecutionFactory extends
 	@Override
 	public void start() throws TranslatorException {
 		super.start();
-//		LogManager.logTrace(LogConstants.CTX_CONNECTOR,
-//				"Solr Executionfactory Started");
+		this.setSupportsOrderBy(true);
 	}
-//	@Override
-//	public IbisConnection getConnection(ConnectionFactory factory,
-//			ExecutionContext executionContext) throws TranslatorException {
-//		// TODO Auto-generated method stub
-//		return super.getConnection(factory, executionContext);
-//	}
-//
-//	public IbisExecutionFactory() {
-//		// connect to eis
-//
-//		// query eis
-//	}
 
 
 	@Override
@@ -135,9 +122,20 @@ public class IbisExecutionFactory extends
 	}
 
 
+	@Override
+	public void setSupportsOrderBy(boolean supportsOrderBy) {
+		super.setSupportsOrderBy(supportsOrderBy);
+	}
 
+	
 	@Override
 	public boolean supportsLikeCriteria() {
+		return true;
+	}
+
+
+	@Override
+	public boolean supportsCompareCriteriaOrdered() {
 		return true;
 	}
 
