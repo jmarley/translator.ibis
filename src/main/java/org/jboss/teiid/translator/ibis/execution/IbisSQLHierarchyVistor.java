@@ -47,6 +47,7 @@ public class IbisSQLHierarchyVistor extends HierarchyVisitor {
 	private String rowLimit;
 	public static String V_Q  = "?v=${v}&q=${q}";
 	public static String V_Q_S  = "?v=${v}&q=${q}&sort=${sort}";
+	public static String V_Q_R = "?v=${v}&q=${q}&rows=${rows}";
 	public static String V_Q_S_R = "?v=${v}&q=${q}&sort=${sort}&rows=${rows}";
 	
 	public String getRowLimit(){
@@ -311,9 +312,13 @@ public class IbisSQLHierarchyVistor extends HierarchyVisitor {
 
 	private String getPathToResolve() {
 		String pathToResolve = V_Q;
+		System.out.println(!StringUtils.isBlank(getRowLimit()));
 		if(!StringUtils.isBlank(getSortQueryParam())&&!StringUtils.isBlank(getRowLimit())){
 			pathToResolve = V_Q_S_R;
 
+		}
+		else if(!StringUtils.isBlank(getRowLimit())){
+			pathToResolve = V_Q_R;
 		}
 		else if (!StringUtils.isBlank(getSortQueryParam())) {
             pathToResolve = V_Q_S;
